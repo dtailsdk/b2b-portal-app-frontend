@@ -13,13 +13,13 @@ class B2BPortal extends App {
     checked: false,
   }
 
-  checkIfShopWasInstalled(shop, host) {
+  checkIfAppIsInstalled(shop, host, app) {
     if (shop && !this.state.checked) {
       //Call to backend without auhtorization (session token) in order to determine whether to trigger OAuth flow or not
       axios({
         baseURL: BACKEND_URL,
         method: 'GET',
-        url: '/app/shops?shop=' + shop,
+        url: `/app/shops?shop=${shop}&app=${app}`,
       })
         .then(response => {
           console.log('Response from server on /app/shop:', response.data)
@@ -29,15 +29,15 @@ class B2BPortal extends App {
               this.setState({ checked: true })
             } else {
               console.log('Host query parameter was not set (re-install) - redirecting to OAuth flow')
-              window.location.href = BACKEND_URL + '/shopify/auth/install?shop=' + shop
+              window.location.href = `${BACKEND_URL}/shopify/auth/install?shop=${shop}&app=${app}`
             }
           } else {
             console.log('Shop name was not set - redirecting to OAuth flow')
-            window.location.href = BACKEND_URL + '/shopify/auth/install?shop=' + shop
+            window.location.href = `${BACKEND_URL}/shopify/auth/install?shop=${shop}&app=${app}`
           }
         }, (error) => {
           console.log('An error occurred - redirecting to OAuth flow', error)
-          window.location.href = BACKEND_URL + '/shopify/auth/install?shop=' + shop
+          window.location.href = `${BACKEND_URL}/shopify/auth/install?shop=${shop}&app=${app}`
         })
     }
   }
@@ -45,12 +45,15 @@ class B2BPortal extends App {
   getContent() {
     const shop = this.props.router.query.shop
     const host = this.props.router.query.host
-    this.checkIfShopWasInstalled(shop, host)
-
+    const app = this.props.router.query.app
+    this.checkIfAppIsInstalled(shop, host, app)
+    
     if (this.state.checked && host) {
       const { Component, pageProps } = this.props
+      pageProps.app = app
       pageProps.locale = this.props.router.query.locale
-      const config = { apiKey: SHOPIFY_APP_KEY, host: host, forceRedirect: true }
+      const config = { apiKey: SHOPIFY_APPS_CONFIGURATION[app].shopifyAppKey, host: host, forceRedirect: true }
+
       return (
         <Provider config={config}>
           <AppProvider>
@@ -70,7 +73,7 @@ class B2BPortal extends App {
       <React.Fragment>
         <Head>
           <title>B2B Portal</title>
-          <meta charSet="utf-8" />
+          <meta charSet='utf-8' />
         </Head>
         {this.getContent()}
       </React.Fragment>

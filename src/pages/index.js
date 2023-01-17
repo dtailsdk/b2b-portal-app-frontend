@@ -12,8 +12,9 @@ import {
 
 function Index(props) {
   const [shopName, setShopName] = useState('')
-  const app = useAppBridge()
-  const apiClient = new AuthorizedApiClient(app)
+  const [products, setProducts] = useState([])
+  const appBridge = useAppBridge()
+  const apiClient = new AuthorizedApiClient(appBridge, props.app)
   const { t, i18n } = useTranslation()
   useEffect(() => {
     if (props.locale) {
@@ -21,8 +22,13 @@ function Index(props) {
     }
   }, [])
 
+  const onResponse = (response) => {
+    setProducts(response)
+  }
+
   useEffect(() => {
     apiClient.getAuthorizedData(setShopName)
+    apiClient.getProducts(onResponse)
   }, [])
 
   return (
@@ -32,6 +38,9 @@ function Index(props) {
           <Card title='Hello world app!' sectioned>
             <Text color='success'>
               {t('card.text', { shopName })}
+              <br /><br />
+              First five products:
+              {products.map(product => <div>{product.node.title}<br /></div>)}
             </Text>
           </Card>
         </Layout.Section>

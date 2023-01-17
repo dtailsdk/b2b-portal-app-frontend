@@ -2,7 +2,8 @@ import axios from 'axios'
 import { getSessionToken } from '@shopify/app-bridge-utils'
 
 export class AuthorizedApiClient {
-  constructor (appBridge) {
+  constructor (appBridge, app) {
+    this.app = app
     this.axios = axios.create()
     // intercept all requests on this axios instance
     this.axios.interceptors.request.use(function (config) {
@@ -19,11 +20,25 @@ export class AuthorizedApiClient {
     this.axios({
       baseURL: BACKEND_URL,
       method: 'GET',
-      url: '/app/shops/needs_auth',
+      url: `/app/shops/needs_auth?app=${this.app}`,
     })
     .then((response) => {
       console.log('Response from service that needs session token authorization', response.data)
       setShopName(response.data.shop.name)
+    }, (error) => {
+      console.log('error', error)
+    })
+  }
+
+  getProducts(setProducts){
+    this.axios({
+      baseURL: BACKEND_URL,
+      method: 'GET',
+      url: `/app/shops/products?app=${this.app}`,
+    })
+    .then((response) => {
+      console.log('Response from service that gets products', response.data)
+      setProducts(response.data)
     }, (error) => {
       console.log('error', error)
     })
