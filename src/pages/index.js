@@ -35,7 +35,7 @@ function Index(props) {
     <Page>
       <Layout>
         <Layout.Section>
-          <Card title='Hello world app!' sectioned>
+          <Card title='B2B portal app!' sectioned>
             <Text color='success'>
               {t('card.text', { shopName })}
               <br /><br />
