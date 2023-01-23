@@ -1,5 +1,9 @@
-import { Text } from '@shopify/polaris'
-import { useTranslation } from 'react-i18next'
+import { 
+  FooterHelp, 
+  Link, 
+  Text, 
+ } from '@shopify/polaris'
+import { useTranslation, Trans } from 'react-i18next'
 import { useAppBridge } from '@shopify/app-bridge-react'
 import { useEffect } from 'react'
 import { AuthorizedApiClient } from '../lib/AuthorizedApiClient'
@@ -35,14 +39,32 @@ function Index(props) {
     <Page>
       <Layout>
         <Layout.Section>
-          <Card title='B2B portal app!' sectioned>
-            <Text color='success'>
-              {t('card.text', { shopName })}
+          <Card title='dtails B2B portal' sectioned>
+            <Text>
+              {t('card.welcome', { shopName })}
               <br /><br />
-              First five products:
-              {products.map(product => <div>{product.node.title}<br /></div>)}
             </Text>
           </Card>
+          {/*
+          <Card title='dtails B2B portal app' sectioned>
+            <Text key='info' color='success'>
+              {t('card.text', { shopName })}
+              <br /><br />
+            </Text>
+              First five products:
+              {products.map(product => <Text key={product.id}>{product.node.title}<br /></Text>)}
+          </Card>
+          */}
+        </Layout.Section>
+        <Layout.Section>
+          <FooterHelp>
+            <Trans i18nKey='footer'>
+              Læs mere
+                <Link url='https://dtails.dk/' external={true}>
+                her
+            </Link>
+            </Trans>
+          </FooterHelp>
         </Layout.Section>
       </Layout>
     </Page >

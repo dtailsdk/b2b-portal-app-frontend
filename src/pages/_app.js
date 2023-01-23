@@ -72,7 +72,7 @@ class B2BPortal extends App {
     return (
       <React.Fragment>
         <Head>
-          <title>B2B Portal</title>
+          <title>dtails B2B portal</title>
           <meta charSet='utf-8' />
         </Head>
         {this.getContent()}

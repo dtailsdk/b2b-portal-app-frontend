@@ -1,5 +1,7 @@
 {
   "card": {
+    "welcome": "Med installationen af denne app har du installeret B2B løsningen \"dtails B2B portal\"",
     "text": "Polaris/Mekanisme app skabelon installeret i {{shopName}}"
-  }
+  },
+  "footer": "Se mere <1>her</1>"
 }
