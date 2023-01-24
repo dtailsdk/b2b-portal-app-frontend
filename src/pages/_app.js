@@ -19,10 +19,10 @@ class B2BPortal extends App {
       axios({
         baseURL: BACKEND_URL,
         method: 'GET',
-        url: `/app/shops?shop=${shop}&app=${app}`,
+        url: `/app/api/shops?shop=${shop}&app=${app}`,
       })
         .then(response => {
-          console.log('Response from server on /app/shop:', response.data)
+          console.log('Response from server on /app/api/shop:', response.data)
           if (response.data.appInstalled) {
             console.log('Shop was already installed', response.data.shop.name)
             if (host) {
@@ -47,7 +47,7 @@ class B2BPortal extends App {
     const host = this.props.router.query.host
     const app = this.props.router.query.app
     this.checkIfAppIsInstalled(shop, host, app)
-    
+
     if (this.state.checked && host) {
       const { Component, pageProps } = this.props
       pageProps.app = app

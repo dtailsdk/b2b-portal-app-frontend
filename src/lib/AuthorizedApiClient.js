@@ -20,7 +20,7 @@ export class AuthorizedApiClient {
     this.axios({
       baseURL: BACKEND_URL,
       method: 'GET',
-      url: `/app/shops/needs_auth?app=${this.app}`,
+      url: `/app/api/shops/needs_auth?app=${this.app}`,
     })
     .then((response) => {
       console.log('Response from service that needs session token authorization', response.data)
@@ -34,7 +34,7 @@ export class AuthorizedApiClient {
     this.axios({
       baseURL: BACKEND_URL,
       method: 'GET',
-      url: `/app/shops/products?app=${this.app}`,
+      url: `/app/api/shops/products?app=${this.app}`,
     })
     .then((response) => {
       console.log('Response from service that gets products', response.data)
