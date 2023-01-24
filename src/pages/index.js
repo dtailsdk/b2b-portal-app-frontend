@@ -1,8 +1,8 @@
-import { 
-  FooterHelp, 
-  Link, 
-  Text, 
- } from '@shopify/polaris'
+import {
+  FooterHelp,
+  Link,
+  Text,
+} from '@shopify/polaris'
 import { useTranslation, Trans } from 'react-i18next'
 import { useAppBridge } from '@shopify/app-bridge-react'
 import { useEffect } from 'react'
@@ -16,7 +16,6 @@ import {
 
 function Index(props) {
   const [shopName, setShopName] = useState('')
-  const [products, setProducts] = useState([])
   const appBridge = useAppBridge()
   const apiClient = new AuthorizedApiClient(appBridge, props.app)
   const { t, i18n } = useTranslation()
@@ -26,13 +25,8 @@ function Index(props) {
     }
   }, [])
 
-  const onResponse = (response) => {
-    setProducts(response)
-  }
-
   useEffect(() => {
     apiClient.getAuthorizedData(setShopName)
-    apiClient.getProducts(onResponse)
   }, [])
 
   return (
@@ -45,16 +39,6 @@ function Index(props) {
               <br /><br />
             </Text>
           </Card>
-          {/*
-          <Card title='dtails B2B portal app' sectioned>
-            <Text key='info' color='success'>
-              {t('card.text', { shopName })}
-              <br /><br />
-            </Text>
-              First five products:
-              {products.map(product => <Text key={product.id}>{product.node.title}<br /></Text>)}
-          </Card>
-          */}
         </Layout.Section>
         <Layout.Section>
           <FooterHelp>
