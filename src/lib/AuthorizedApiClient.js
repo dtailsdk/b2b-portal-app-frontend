@@ -29,18 +29,4 @@ export class AuthorizedApiClient {
       console.log('error', error)
     })
   }
-
-  getProducts(setProducts){
-    this.axios({
-      baseURL: BACKEND_URL,
-      method: 'GET',
-      url: `/app/api/shops/products?app=${this.app}`,
-    })
-    .then((response) => {
-      console.log('Response from service that gets products', response.data)
-      setProducts(response.data)
-    }, (error) => {
-      console.log('error', error)
-    })
-  }
 }
