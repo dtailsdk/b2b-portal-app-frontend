@@ -19,13 +19,13 @@ function Index(props) {
   const appBridge = useAppBridge()
   const apiClient = new AuthorizedApiClient(appBridge, props.app)
   const { t, i18n } = useTranslation()
+
+  const contactEmail = CONTACT_EMAIL
+
   useEffect(() => {
     if (props.locale) {
       i18n.changeLanguage(props.locale.substring(0, 2))
     }
-  }, [])
-
-  useEffect(() => {
     apiClient.getAuthorizedData(setShopName)
   }, [])
 
@@ -35,8 +35,8 @@ function Index(props) {
         <Layout.Section>
           <Card title='dtails B2B portal' sectioned>
             <Text>
-              <p>{t('card.welcome', { shopName })}</p>
-              <p>{t('card.disclaimer', { shopName })}</p>
+              <p>{t('card.welcome')}</p>
+              <p>{t('card.disclaimer', { contactEmail })}</p>
               <br /><br />
             </Text>
           </Card>

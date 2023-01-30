@@ -1,7 +1,7 @@
 {
   "card": {
     "welcome": "By installing this app you have installed the B2B solution \"dtails B2B portal\".",
-    "disclaimer": "The app is under continous development. Any input and feedback is welcomed at support@dtails.dk.",
+    "disclaimer": "The app is under continous development. Any input and feedback is welcomed at {{contactEmail}}.",
     "text": "Polaris/Mekanisme app template installed in {{shopName}}"
   },
   "footer": "Read more <1>here</1>"
