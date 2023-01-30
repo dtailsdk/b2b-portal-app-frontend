@@ -1,6 +1,7 @@
 {
   "card": {
-    "welcome": "Med installationen af denne app har du installeret B2B løsningen \"dtails B2B portal\"",
+    "welcome": "Med installationen af denne app har du installeret B2B løsningen \"dtails B2B portal\".",
+    "disclaimer": " App'en er under løbende udvikling - input og feedback modtages meget gerne på support@dtails.dk.",
     "text": "Polaris/Mekanisme app skabelon installeret i {{shopName}}"
   },
   "footer": "Se mere <1>her</1>"

@@ -35,7 +35,8 @@ function Index(props) {
         <Layout.Section>
           <Card title='dtails B2B portal' sectioned>
             <Text>
-              {t('card.welcome', { shopName })}
+              <p>{t('card.welcome', { shopName })}</p>
+              <p>{t('card.disclaimer', { shopName })}</p>
               <br /><br />
             </Text>
           </Card>
