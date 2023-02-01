@@ -45,7 +45,7 @@ function Index(props) {
           <FooterHelp>
             <Trans i18nKey='footer'>
               Læs mere
-                <Link url='https://dtails.dk/' external={true}>
+                <Link url='https://dtails.dk/pages/b2b-solutions' external={true}>
                 her
             </Link>
             </Trans>
