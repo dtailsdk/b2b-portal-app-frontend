@@ -4,9 +4,9 @@ import Head from 'next/head'
 import { AppProvider, Frame } from '@shopify/polaris'
 import { Provider } from '@shopify/app-bridge-react'
 import { withRouter } from 'next/router'
-import '@shopify/polaris/build/esm/styles.css'
 import axios from 'axios'
 import '../utils/i18n'
+import '@shopify/polaris/build/esm/styles.css'
 
 class B2BPortal extends App {
   state = {
@@ -23,8 +23,8 @@ class B2BPortal extends App {
       })
         .then(response => {
           console.log('Response from server on /app/api/shop:', response.data)
-          if (response.data.appInstalled) {
-            console.log('Shop was already installed', response.data.shop.name)
+          if (response.data.installedAndUpdated) {
+            console.log('Shop was already installed and scopes are up to date', response.data.shop.name)
             if (host) {
               this.setState({ checked: true })
             } else {
@@ -32,7 +32,7 @@ class B2BPortal extends App {
               window.location.href = `${BACKEND_URL}/shopify/auth/install?shop=${shop}&app=${app}`
             }
           } else {
-            console.log('Shop name was not set - redirecting to OAuth flow')
+            console.log('Shop scopes have updated - redirecting to OAuth flow')
             window.location.href = `${BACKEND_URL}/shopify/auth/install?shop=${shop}&app=${app}`
           }
         }, (error) => {
